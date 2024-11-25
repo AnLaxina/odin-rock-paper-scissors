@@ -14,4 +14,10 @@ function getComputerChoice() {
     }
 }
 
+// Function that returns what the player enters based on their input
+function getHumanChoice() {
+    const userInput = prompt("Enter a choice (rock, paper,scissors)");
+    return userInput;
+}
+
 
