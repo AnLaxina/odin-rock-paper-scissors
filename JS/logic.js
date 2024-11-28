@@ -27,19 +27,7 @@ function playRound(humanChoice, computerChoice) {
         // Regardless of what the user enters, it will always turn the inputted string into all lowercase
         let humanChoiceLowered = humanChoice.toLowerCase();
 
-        // if (humanChoiceLowered === "rock" && computerChoice == "scissors") {
-        //     humanScore++;
-        //     console.log("You win! Rock beats scissors!");
-        // }
-        // else if (humanChoiceLowered === "paper" && computerChoice == "scissors") {
-        //     humanScore++;
-        //     console.log("You win! Rock beats scissors!");
-        // }
-        // if (humanChoiceLowered === "scissors" && computerChoice == "scissors") {
-        //     humanScore++;
-        //     console.log("You win! Rock beats scissors!");
-        // }
-
+        // Select the player choice and compares it with what the randomly generated number made
         switch (humanChoiceLowered) {
             case "rock":
                 if (computerChoice === "rock") {
