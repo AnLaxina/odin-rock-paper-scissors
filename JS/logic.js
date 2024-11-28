@@ -59,14 +59,14 @@ function playRound(humanChoice, computerChoice) {
             case "paper":
                 if (computerChoice === "rock") {
                     console.log("You win! Paper beats Rock.");
-                    computerScore++;
+                    humanScore++;
                 }
                 else if (computerChoice === "paper") {
                     console.log("Both played Paper! No change in score.");
-                    humanScore++;
                 }
                 else {
                     console.log("You lose! Rock beats Paper.");
+                    computerScore++;
                 }
                 break;
             default:
