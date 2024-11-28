@@ -2,7 +2,6 @@
 // Returns a random string: "rock", "paper", "scissors"
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
-    console.log(randomNumber);
     if (randomNumber === 0) {
         return "rock";
     }
@@ -80,13 +79,32 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+// Plays the game based on the number of rounds in the numOfRounds parameter
+function playGame(numOfRounds = 1) {
+    for (let i = 1; i <= numOfRounds; i++) {
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+    }
+
+    // Once done, determine the final score to see who ultimately wins!
+    if (humanScore > computerScore) {
+        alert(`You win! With ${humanScore} points!`);
+    }
+    else if (humanScore < computerScore) {
+        alert(`You lose! With the computer having ${computerScore} points!`);
+    }
+    else {
+        alert("It's a tie!");
+    }
+
+}
+
 let humanScore = 0;
 let computerScore = 0;
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+playGame(3);
 
-playRound(humanChoice, computerChoice);
 
 
 
