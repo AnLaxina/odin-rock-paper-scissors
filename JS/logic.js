@@ -112,6 +112,21 @@ function playRound(event) {
 
 // Once the player or a computer reaches 5 points, the game ends and the results are shown on the screen!
 function announceWinner() {
+    // Create a node to announce the winner!
+    const p = document.createElement("p");
+    results.appendChild(p);
+
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore > computerScore) {
+            p.textContent = `You win! With your score being: ${humanScore} & the computer's: ${computerScore}`;
+        }
+        else if (computerScore > humanScore) {
+            p.textContent = `The computer wins! With your score being: ${humanScore} & the computer's: ${computerScore}`;
+        }
+        else {
+            p.textContent = "It's.... a tie?? Wow! Both you guys have 5 points!";
+        }
+    }
 
 
 }
@@ -139,6 +154,7 @@ div.appendChild(instructions);
 const selections = document.querySelector(".selections");
 
 selections.addEventListener("click", playRound);
+selections.addEventListener("click", announceWinner);
 
 const results = document.querySelector(".results");
 
