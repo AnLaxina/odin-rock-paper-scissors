@@ -134,7 +134,6 @@ function announceWinner() {
 
 let humanScore = 0;
 let computerScore = 0;
-let numberOfRounds = 0;
 // Set an indicator for the round for the DOM
 let currentRound = 1;
 
@@ -146,8 +145,8 @@ let currentRound = 1;
 const div = document.querySelector(".instructions");
 
 const instructions = document.createElement("p");
-instructions.textContent = `Welcome to Rock Paper Scissors! There will be a total of ${numberOfRounds} rounds. Please click on
-a button below to make your choice. You will start the next round automatically once you do click a button and the results will be shown once the game is over!`;
+instructions.textContent = `Welcome to Rock Paper Scissors! Once either the computer or you achieves 5 points, the game ends. Please click on
+a button below to make your choice. You will start the next round automatically once you click a button and the results will be shown once the game is over!`;
 
 div.appendChild(instructions);
 
