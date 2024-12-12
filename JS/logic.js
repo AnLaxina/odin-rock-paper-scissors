@@ -33,12 +33,22 @@ function getHumanChoice(event) {
     return humanChoice;
 }
 
-// Refactored it so whenever the user clicks a button, a round would have been played
+// Refactored it so whenever the user clicks a button, a round would have been played, and the score changes accordingly
 
 function playRound(event) {
 
     let humanChoice = getHumanChoice(event);
     let computerChoice = getComputerChoice();
+
+    // Create an h2 element each time a round is played to show the results
+    const h2 = document.createElement("h2");
+    h2.textContent = `Round ${currentRound}`;
+    results.appendChild(h2);
+
+    const p = document.createElement("p");
+    results.appendChild(p);
+
+    instructions.textContent = "";
 
     if (humanChoice != null) {
         // Regardless of what the user enters, it will always turn the inputted string into all lowercase
@@ -48,44 +58,47 @@ function playRound(event) {
         switch (humanChoiceLowered) {
             case "rock":
                 if (computerChoice === "rock") {
-                    console.log("Both played Rock! No change in score.");
+                    p.textContent = "Both played Rock! No change in score.";
                 }
                 else if (computerChoice === "paper") {
-                    console.log("You lose! Paper beats Rock.");
+                    p.textContent = "You lose! Paper beats Rock.";
                     computerScore++;
                 }
                 else {
-                    console.log("You win! Rock beats Scissors.");
+                    p.textContent = "You win! Rock beats Scissors.";
                     humanScore++;
                 }
+                currentRound++;
                 break;
 
             case "scissors":
                 if (computerChoice === "rock") {
-                    console.log("You lose! Rock beats Scissors.");
+                    p.textContent = "You lose! Rock beats Scissors.";
                     computerScore++;
                 }
                 else if (computerChoice === "paper") {
-                    console.log("You win! Scissors beats Paper.");
+                    p.textContent = "You win! Scissors beats Paper.";
                     humanScore++;
                 }
                 else {
-                    console.log("Both played Scissors! No change in score.");
+                    p.textContent = "Both played Scissors! No change in score.";
                 }
+                currentRound++;
                 break;
 
             case "paper":
                 if (computerChoice === "rock") {
-                    console.log("You win! Paper beats Rock.");
+                    p.textContent = "You win! Paper beats Rock.";
                     humanScore++;
                 }
                 else if (computerChoice === "paper") {
-                    console.log("Both played Paper! No change in score.");
+                    p.textContent = "Both played Paper! No change in score.";
                 }
                 else {
-                    console.log("You lose! Rock beats Paper.");
+                    p.textContent = "You lose! Rock beats Paper.";
                     computerScore++;
                 }
+                currentRound++;
                 break;
             default:
                 console.log("Incorrect input! Please select one: rock, paper, scissors");
@@ -97,30 +110,17 @@ function playRound(event) {
     }
 }
 
-// Plays the game based on the number of rounds in the numOfRounds parameter
-function playGame(numOfRounds = 1) {
-    for (let i = 1; i <= numOfRounds; i++) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
-    }
+// Once the player or a computer reaches 5 points, the game ends and the results are shown on the screen!
+function announceWinner() {
 
-    // Once done, determine the final score to see who ultimately wins!
-    if (humanScore > computerScore) {
-        alert(`You win! With ${humanScore} points!`);
-    }
-    else if (humanScore < computerScore) {
-        alert(`You lose! With the computer having ${computerScore} points!`);
-    }
-    else {
-        alert("It's a tie!");
-    }
 
 }
 
 let humanScore = 0;
 let computerScore = 0;
 let numberOfRounds = 0;
+// Set an indicator for the round for the DOM
+let currentRound = 1;
 
 // playGame(3);
 
@@ -139,6 +139,8 @@ div.appendChild(instructions);
 const selections = document.querySelector(".selections");
 
 selections.addEventListener("click", playRound);
+
+const results = document.querySelector(".results");
 
 
 
