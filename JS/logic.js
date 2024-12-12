@@ -13,15 +13,33 @@ function getComputerChoice() {
     }
 }
 
-// Function that returns what the player enters based on their input
-function getHumanChoice() {
-    const userInput = prompt("Enter a choice (rock, paper,scissors)");
-    return userInput;
+// Function intended for the onclick event for each of the selection buttons
+function getHumanChoice(event) {
+    let target = event.target;
+    let humanChoice = "";
+    switch (target.className) {
+        case "rock":
+            humanChoice = "rock";
+            break;
+        case "scissors":
+            humanChoice = "scissors";
+            break;
+        case "paper":
+            humanChoice = "paper";
+            break;
+
+    }
+
+    return humanChoice;
 }
 
-// Check if what the user enters are valid inputs and increments the score accordingly
+// Refactored it so whenever the user clicks a button, a round would have been played
 
-function playRound(humanChoice, computerChoice) {
+function playRound(event) {
+
+    let humanChoice = getHumanChoice(event);
+    let computerChoice = getComputerChoice();
+
     if (humanChoice != null) {
         // Regardless of what the user enters, it will always turn the inputted string into all lowercase
         let humanChoiceLowered = humanChoice.toLowerCase();
@@ -102,30 +120,26 @@ function playGame(numOfRounds = 1) {
 
 let humanScore = 0;
 let computerScore = 0;
+let numberOfRounds = 0;
 
 // playGame(3);
 
 // DOM Manipulations for buttons
 
-// Using event delegation to prevent unnecessary strain
+// Add instructions for the player and indicate how many rounds there are currently
+const div = document.querySelector(".instructions");
+
+const instructions = document.createElement("p");
+instructions.textContent = `Welcome to Rock Paper Scissors! There will be a total of ${numberOfRounds} rounds. Please click on
+a button below to make your choice. You will start the next round automatically once you do click a button and the results will be shown once the game is over!`;
+
+div.appendChild(instructions);
+
+// Handle click methods for each of the buttons
 const selections = document.querySelector(".selections");
 
-selections.addEventListener("click", (event) => {
-    let target = event.target;
+selections.addEventListener("click", playRound);
 
-    switch (target.className) {
-        case "rock":
-            console.log("You played rock");
-            break;
-        case "scissors":
-            console.log("You played scissors");
-            break;
-        case "paper":
-            console.log("You played paper");
-            break;
-    }
-
-});
 
 
 
