@@ -117,6 +117,7 @@ function announceWinner() {
     results.appendChild(p);
 
     if (humanScore === 5 || computerScore === 5) {
+        selections.remove();
         if (humanScore > computerScore) {
             p.textContent = `You win! With your score being: ${humanScore} & the computer's: ${computerScore}`;
         }
