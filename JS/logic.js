@@ -107,6 +107,25 @@ let computerScore = 0;
 
 // DOM Manipulations for buttons
 
+// Using event delegation to prevent unnecessary strain
+const selections = document.querySelector(".selections");
+
+selections.addEventListener("click", (event) => {
+    let target = event.target;
+
+    switch (target.className) {
+        case "rock":
+            console.log("You played rock");
+            break;
+        case "scissors":
+            console.log("You played scissors");
+            break;
+        case "paper":
+            console.log("You played paper");
+            break;
+    }
+
+});
 
 
 
